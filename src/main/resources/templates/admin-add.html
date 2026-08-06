@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>DebugMate Admin</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: #e5e7eb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        h1 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        input, textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #0b1220;
+            color: #e5e7eb;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        button {
+            background: #38bdf8;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            color: black;
+        }
+
+        button:hover {
+            background: #0ea5e9;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Add Error</h1>
+
+    <form action="/admin/save" method="post">
+
+        <input type="text" name="errorName" placeholder="Error Name">
+
+        <input type="text" name="category" placeholder="Category">
+
+        <textarea name="causeText" placeholder="Cause"></textarea>
+
+        <textarea name="solutionText" placeholder="Solution"></textarea>
+
+        <textarea name="exampleCode" placeholder="Example Code"></textarea>
+
+        <textarea name="fixCode" placeholder="Fix Code"></textarea>
+
+        <button type="submit">Save Error</button>
+
+    </form>
+
+    <a href="/admin/list">View All Errors</a>
+
+</div>
+
+</body>
+</html>

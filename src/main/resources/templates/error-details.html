@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error Details</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: #e5e7eb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #38bdf8;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .label {
+            color: #38bdf8;
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+
+        pre {
+            background: #0b1220;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .tag {
+            background: #334155;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        a {
+            color: #38bdf8;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+
+        .flow{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+    margin-top:15px;
+}
+
+
+.step{
+    background:#e5e7eb;
+    color:#111827;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.failed{
+    background:#fee2e2;
+    color:red;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+
+.flow{
+    color:white;
+}
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <!-- ERROR ENTITY DATA -->
+        <h1 th:text="${detail.error.errorName}"></h1>
+
+        <span class="tag" th:text="${detail.error.category}"></span>
+
+        <p th:text="${detail.error.shortDescription}"></p>
+
+        <!-- DETAIL DATA -->
+        <span class="label">Actual Error</span>
+        <pre th:text="${detail.actualError}"></pre>
+
+        <span class="label">Cause</span>
+        <pre th:text="${detail.causeText}"></pre>
+
+        <span class="label">Solution</span>
+        <pre th:text="${detail.solutionText}"></pre>
+
+        <span class="label">Example Code</span>
+        <pre th:text="${detail.exampleCode}"></pre>
+
+        <span class="label">Fix Code</span>
+        <pre th:text="${detail.fixCode}"></pre>
+
+        <a th:href="@{/fix/{id}(id=${detail.error.id})}">
+            View Fix Generator
+        </a>
+
+
+<!--        DEBUG FLOW-->
+
+
+        <h2>Debug Flow View</h2>
+
+        <div class="flow">
+
+            <th:block th:each="step, iter : ${flowSteps}">
+
+
+
+                <span
+                        th:text="${step}"
+                        th:class="${step.equalsIgnoreCase(failedStep)} ? 'failed' : 'step'">
+</span>
+
+
+
+                <span th:if="${!iter.last}">
+            →
+        </span>
+
+            </th:block>
+
+        </div>
+        <a href="/">← Back Home</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

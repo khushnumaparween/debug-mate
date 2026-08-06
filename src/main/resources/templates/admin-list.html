@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Errors</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: #e5e7eb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 70%;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        h1 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #38bdf8;
+        }
+
+        h2 {
+            margin: 0;
+            color: #f8fafc;
+        }
+
+        .meta {
+            margin-top: 5px;
+            color: #94a3b8;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #f87171;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #ef4444;
+        }
+
+        .add-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #38bdf8;
+            color: black;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .add-btn:hover {
+            background: #0ea5e9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Stored Errors</h1>
+
+    <div th:each="error : ${errors}" class="card">
+
+        <h2 th:text="${error.errorName}"></h2>
+
+        <div class="meta">
+            Category:
+            <span th:text="${error.category}"></span>
+        </div>
+
+        <a th:href="@{'/admin/delete/' + ${error.id}}">
+            Delete
+        </a>
+
+        <a th:href="@{'/admin/edit/' + ${error.id}}">
+            Edit
+        </a>
+
+    </div>
+
+    <a href="/admin/add" class="add-btn">Add More Errors</a>
+
+</div>
+
+</body>
+</html>

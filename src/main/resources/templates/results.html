@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: #e5e7eb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .tag {
+            background: #334155;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .desc {
+            margin-top: 8px;
+            color: #94a3b8;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #38bdf8;
+            color: black;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #0ea5e9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Search Results</h1>
+
+    <h2 th:text="'Results for: ' + ${keyword}"></h2>
+    <div th:if="${#lists.isEmpty(errors)}">
+        <p>No results found.</p>
+    </div>
+
+
+
+    <div th:each="error : ${errors}" class="card">
+
+        <div class="title" th:text="${error.errorName}"></div>
+
+        <div>
+            <span class="tag" th:text="${error.category}"></span>
+        </div>
+
+        <div class="desc" th:text="${error.shortDescription}"></div>
+
+        <a th:href="@{'/error/' + ${error.id}}" class="btn">
+            Read More →
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

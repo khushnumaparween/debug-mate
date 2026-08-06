@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Debug Flow</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f7fb;
+            padding:40px;
+        }
+
+        h1{
+            color:#222;
+        }
+
+        .flow-container{
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.1);
+            margin-top:20px;
+        }
+
+        .flow{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            flex-wrap:wrap;
+            font-size:18px;
+            font-weight:bold;
+        }
+
+        .step{
+            background:#e5e7eb;
+            padding:12px 18px;
+            border-radius:8px;
+        }
+
+        .failed{
+            background:#fee2e2;
+            color:#dc2626;
+        }
+
+        .arrow{
+            font-size:22px;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Debug Flow View</h1>
+
+<div class="flow-container">
+
+    <div class="flow">
+
+        <div class="step">Request</div>
+
+        <div class="arrow">→</div>
+
+        <div class="step">Controller</div>
+
+        <div class="arrow">→</div>
+
+        <div class="step">Service</div>
+
+        <div class="arrow">→</div>
+
+        <div class="step failed">
+            Repository ❌
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="step">Database</div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

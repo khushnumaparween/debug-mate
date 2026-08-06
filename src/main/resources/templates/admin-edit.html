@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edit Error</title>
+
+  <style>
+    body {
+        font-family: Arial;
+        background: #0f172a;
+        color: #e5e7eb;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 60%;
+        margin: auto;
+        padding: 30px;
+    }
+
+    h1 {
+        color: #38bdf8;
+    }
+
+    form {
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    input, textarea {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        background: #0b1220;
+        color: #e5e7eb;
+    }
+
+    button {
+        background: #38bdf8;
+        color: black;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #0ea5e9;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Edit Error</h1>
+
+  <form action="/admin/save" method="post">
+
+    <input type="hidden" name="id" th:value="${error.id}">
+
+    <input type="text"
+           name="errorName"
+           th:value="${error.errorName}"
+           placeholder="Error Name">
+
+    <input type="text"
+           name="category"
+           th:value="${error.category}"
+           placeholder="Category">
+
+    <!-- IMPORTANT: detail fields -->
+    <textarea name="causeText"
+              th:text="${detail.causeText}"></textarea>
+
+    <textarea name="solutionText"
+              th:text="${detail.solutionText}"></textarea>
+
+    <textarea name="exampleCode"
+              th:text="${detail.exampleCode}"></textarea>
+
+    <textarea name="fixCode"
+              th:text="${detail.fixCode}"></textarea>
+
+    <button type="submit">Update</button>
+
+  </form>
+
+</div>
+
+</body>
+</html>

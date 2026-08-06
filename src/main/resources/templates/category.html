@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Category Errors</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #38bdf8;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            transition: 0.3s;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            background: #263449;
+        }
+
+        .error-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f8fafc;
+        }
+
+        .desc {
+            margin-top: 8px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .meta {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #334155;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 12px;
+            background: #38bdf8;
+            color: black;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #0ea5e9;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #38bdf8;
+            color: black;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #0ea5e9;
+        }
+
+        .header {
+            margin-bottom: 25px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1 th:text="${category}"></h1>
+    </div>
+
+    <!-- SINGLE LOOP ONLY -->
+    <div th:each="err : ${errors}" class="card">
+
+        <div class="error-title" th:text="${err.errorName}"></div>
+
+        <div class="desc" th:text="${err.shortDescription}"></div>
+
+        <div class="meta">
+            Category:
+            <span class="tag" th:text="${err.category}"></span>
+        </div>
+
+        <!-- READ MORE -->
+        <a th:href="@{'/error/' + ${err.id}}" class="btn">
+            Read More →
+        </a>
+
+    </div>
+
+    <a href="/" class="back-btn">← Back</a>
+
+</div>
+
+</body>
+</html>
